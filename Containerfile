@@ -26,6 +26,8 @@ WORKDIR /home/pz/Zomboid/db
 
 ADD servertest.ini
 
+ADD servertest_SandboxVars.lua
+
 RUN mkdir -p /home/pz/Zomboid/db
 
 WORKDIR /home/pz/Zomboid/db
