@@ -20,11 +20,17 @@ RUN useradd -m pz
 
 USER pz
 
+RUN mkdir -p /home/pz/Zomboid/Server
+
+WORKDIR /home/pz/Zomboid/db
+
+ADD servertest.ini
+
 RUN mkdir -p /home/pz/Zomboid/db
 
 WORKDIR /home/pz/Zomboid/db
 
-COPY servertest.db.sql .
+ADD servertest.db.sql
 
 RUN sqlite3 servertest.db < servertest.db.sql
 
