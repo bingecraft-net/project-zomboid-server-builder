@@ -1,0 +1,13 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE [whitelist] ([id] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,[world] TEXT DEFAULT 'servertest' NULL,[username] TEXT  NULL,[password] TEXT  NULL, [admin] BOOLEAN DEFAULT false NULL, [moderator] BOOLEAN DEFAULT false NULL, [banned] BOOLEAN DEFAULT false NULL, [priority] BOOLEAN DEFAULT false NULL,  [lastConnection] TEXT NULL, 'encryptedPwd' BOOLEAN NULL DEFAULT false, 'pwdEncryptType' INTEGER NULL DEFAULT 1, 'steamid' TEXT NULL, 'ownerid' TEXT NULL, 'accesslevel' TEXT NULL, 'transactionID' INTEGER NULL, 'displayName' TEXT NULL);
+INSERT INTO whitelist VALUES(1,'servertest','admin','$2a$12$O/BFHoDFPrfFaNPAACmWpuZrhgnSpoWnza2NBbjmw5M9p/kYCq4w6',0,0,0,0,NULL,'true',2,NULL,NULL,'admin',NULL,NULL);
+CREATE TABLE [bannedip] ([ip] TEXT NOT NULL,[username] TEXT NULL, [reason] TEXT NULL);
+CREATE TABLE [bannedid] ([steamid] TEXT NOT NULL, [reason] TEXT NULL);
+CREATE TABLE [userlog] ([id] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,[username] TEXT  NULL,[type] TEXT  NULL, [text] TEXT  NULL, [issuedBy] TEXT  NULL, [amount] INTEGER NULL, [lastUpdate] TEXT NULL);
+CREATE TABLE [tickets] ([id] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL, [message] TEXT NOT NULL, [author] TEXT NOT NULL,[answeredID] INTEGER,[viewed] BOOLEAN NULL DEFAULT false);
+DELETE FROM sqlite_sequence;
+INSERT INTO sqlite_sequence VALUES('whitelist',1);
+CREATE UNIQUE INDEX [id] ON [whitelist]([id]  ASC);
+CREATE UNIQUE INDEX [username] ON [whitelist]([username]  ASC);
+COMMIT;
