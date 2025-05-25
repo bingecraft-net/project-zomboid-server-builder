@@ -4,7 +4,7 @@ if [ -s cidfile ] ; then
   podman start $(cat cidfile)
 else
   podman build -t pz .
-  podman run -dip 16261:16261/udp pz > cidfile
+  podman run -di -p 16261:16261/udp -p 16262:16262/udp pz > cidfile
 fi
 
 podman logs --follow $(cat cidfile)
